@@ -66,4 +66,25 @@ public class SubscriberServiceImpl implements SubscriberService{
     public void updateSubscriber(Subscriber subscriber) {
         subscriberMapper.updateByPrimaryKeySelective(subscriber);
     }
+
+    /**
+     * 用户删除
+     * @param subscriberId
+     */
+    @Override
+    public void deleteSubscriber(Integer subscriberId) {
+        subscriberMapper.deleteByPrimaryKey(subscriberId);
+    }
+
+    /**
+     * 多个用户的删除
+     * @param subscriberIds
+     */
+    @Override
+    public void deleteBath(List<Integer> subscriberIds) {
+        SubscriberExample example = new SubscriberExample();
+        SubscriberExample.Criteria criteria = example.createCriteria();
+        criteria.andSubscriberIdIn(subscriberIds);
+        subscriberMapper.deleteByExample(example);
+    }
 }

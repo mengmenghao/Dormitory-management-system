@@ -14,4 +14,8 @@ public interface SubscriberService {
     Subscriber getSubscriber(Integer subscriberId);
 
     void updateSubscriber(Subscriber subscriber);
+
+    void deleteSubscriber(Integer subscriberId);
+
+    void deleteBath(List<Integer> subscriberIds);
 }
