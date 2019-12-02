@@ -59,7 +59,7 @@ public class LoginController {
         }else if (subscribers.getSubscriberPermission().equals(3)){
             System.out.println("管理员");
             session.setAttribute("users", subscribers);
-            return "admin";
+            return "inde";
         }else if(subscribers.getSubscriberPermission().equals(2)){
             session.setAttribute("users", subscribers);
             return "sustube";
@@ -144,8 +144,8 @@ public class LoginController {
      * @param subscriberName
      * @return
      */
-    @ResponseBody
     @RequestMapping("checkUser")
+    @ResponseBody
     public Msg checkUser(@RequestParam("subscriberName") String subscriberName){
         System.out.println(subscriberName);
         //先判断用户名是否是合法表达式

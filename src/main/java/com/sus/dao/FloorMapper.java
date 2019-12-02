@@ -21,4 +21,12 @@ public interface FloorMapper {
     int updateByExampleSelective(@Param("record") Floor record, @Param("example") FloorExample example);
 
     int updateByExample(@Param("record") Floor record, @Param("example") FloorExample example);
+
+    List<Floor> selectFloor();
+
+    Floor selectFloorId(Integer floorId);
+
+    void updateByPrimaryKeySelective(Floor floor);
+
+    void deleteByPrimaryKey(Integer floorId);
 }
