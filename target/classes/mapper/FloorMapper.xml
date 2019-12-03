@@ -78,6 +78,12 @@
   <sql id="Dormitory_Column_List">
     f.floor_Id, floor_Name,dormitory_Id,dormitory_Name
   </sql>
+  <select id="selectFloor" resultMap="BaseResultMap">
+    select * from floor
+  </select>
+  <select id="selectFloorId" resultMap="BaseResultMap">
+    select * from floor where floor_Id=#{floorId}
+  </select>
   <select id="selectByExampleDormitory" parameterType="com.sus.bean.FloorExample" resultMap="DormitoryResultMap">
     select
     <if test="distinct">
@@ -111,6 +117,10 @@
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from floor
+    where floor_Id = #{floorId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.sus.bean.Floor">
     insert into floor (floor_Id, floor_Name)
@@ -162,5 +172,14 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sus.bean.Floor">
+    update floor
+    <set>
+      <if test="floorName != null">
+        floor_Name = #{floorName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where floor_Id = #{floorId,jdbcType=INTEGER}
   </update>
 </mapper>
